@@ -1,0 +1,4 @@
+C:/Users/This/Desktop/Facultate/SDA/lab_6/cmake-build-debug/CMakeFiles/target1.dir
+C:/Users/This/Desktop/Facultate/SDA/lab_6/cmake-build-debug/CMakeFiles/target2.dir
+C:/Users/This/Desktop/Facultate/SDA/lab_6/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/This/Desktop/Facultate/SDA/lab_6/cmake-build-debug/CMakeFiles/rebuild_cache.dir
