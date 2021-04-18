@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/This/Desktop/Facultate/SDA/tema_4/Patient.h
+cstdint
+-
+string
+-
+
+C:/Users/This/Desktop/Facultate/SDA/tema_4/PriorityQueue.h
+cstdint
+-
+bits/stdc++.h
+-
+Patient.h
+C:/Users/This/Desktop/Facultate/SDA/tema_4/Patient.h
+
+C:/Users/This/Desktop/Facultate/SDA/tema_4/main.cpp
+bits/stdc++.h
+-
+Patient.h
+C:/Users/This/Desktop/Facultate/SDA/tema_4/Patient.h
+PriorityQueue.h
+C:/Users/This/Desktop/Facultate/SDA/tema_4/PriorityQueue.h
+
