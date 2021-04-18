@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1584383230 source:e:\facultate\sda\tema_1\p_1.c
+	<stdio.h>
+	<stdint.h>
+	<stdlib.h>
+	<string.h>
+
+1584475278 source:e:\facultate\sda\tema_1\p_2.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	<stdint.h>
+
+1584391731 source:e:\facultate\sda\tema_1\p_3.cpp
+	<bits/stdc++.h>
+
