@@ -1,0 +1,103 @@
+#include <bits/stdc++.h>
+#include "voter.h"
+using namespace std;
+
+bool sortByVal(const pair<string, int> &a, const pair<string, int> &b)
+{
+    return (a.second > b.second);
+}
+
+void readVoters(string& filename, map<string, Voter>& database) {
+    string line;
+    fstream file;
+    file.open(filename);
+
+    if (file.is_open()) {
+        while (getline(file, line)) {
+            Voter tmp(line);
+            database.insert(pair<string, Voter>(tmp.getCnp(), tmp));
+        }
+    } else {
+        cout << "ERROR OPENING " << filename;
+    }
+
+    file.close();
+}
+
+void submitVote(string cnp, string candidate, map<string, Voter>& voterDatabase, map<string, int>& candidates, int& fraud, int& totalVotes) {
+    if (voterDatabase.find(cnp) == voterDatabase.end()) {
+        cout << "CNP invalid"<<endl;
+        fraud++;
+    } else {
+        if(voterDatabase.find(cnp)->second.alreadyVoted()) {
+            cout << "Vot deja inregistrat"<<endl;
+            fraud++;
+        } else if (voterDatabase.find(cnp)->second.canVote()) {
+            if (candidates.find(candidate.substr(1, candidate.size()-1)) == candidates.end()) {
+                candidates.insert(pair<string, int>(candidate.substr(1, candidate.size()-1), 1));
+            } else {
+                candidates.find(candidate.substr(1, candidate.size()-1))->second++;
+            }
+            totalVotes++;
+            voterDatabase.find(cnp)->second.hasVoted();
+        } else {
+            cout << "Persoana minora" << endl;
+        }
+    }
+}
+
+void printCandidates(map<string, int>& candidates, int& totalVotes) {
+    vector<pair<string, int>> vec;
+    map<string, int> :: iterator it2;
+    for (it2=candidates.begin(); it2!=candidates.end(); it2++)
+    {
+        vec.push_back(make_pair(it2->first, it2->second));
+    }
+
+    sort(vec.begin(), vec.end(), sortByVal);
+
+    for (pair<string, int> pair : vec) {
+        cout << pair.first << ": " << pair.second << " voturi " << "(";
+        cout << fixed << setprecision(2) << (float)pair.second/totalVotes*100 <<"%)"<<endl;
+    }
+}
+
+void printStatistics (map<string, int>& candidates, int& totalVotes, int& fraud) {
+    cout << "Statistici" << endl << "==========" << endl;
+    printCandidates(candidates, totalVotes);
+    cout << "Incercari de frauda: " << fraud << endl;
+}
+
+int main() {
+    map<string, Voter> voterDatabase;
+    map<string, int> candidates;
+    string FILENAME = "evidenta.csv";
+    string line;
+    char operation;
+    int fraud;
+    int totalVotes;
+    fraud = 0;
+    totalVotes = 0;
+
+    readVoters(FILENAME, voterDatabase);
+
+    while (getline(cin, line)) {
+        istringstream ss(line);
+        ss >> operation;
+        if (operation == '?') {
+            printStatistics(candidates, totalVotes, fraud);
+        } else if (operation == '*') {
+            printStatistics(candidates, totalVotes, fraud);
+            break;
+        } else if (operation == '+') {
+            string voterCnp;
+            string candidate;
+            ss >> voterCnp;
+            getline(ss, candidate);
+            submitVote(voterCnp, candidate, voterDatabase, candidates, fraud, totalVotes);
+        }
+
+    }
+    
+    return 0;
+}

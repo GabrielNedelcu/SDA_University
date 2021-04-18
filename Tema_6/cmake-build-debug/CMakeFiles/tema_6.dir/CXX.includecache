@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/This/Desktop/Facultate/SDA/tema_6/main.cpp
+bits/stdc++.h
+-
+voter.h
+C:/Users/This/Desktop/Facultate/SDA/tema_6/voter.h
+
+C:/Users/This/Desktop/Facultate/SDA/tema_6/voter.h
+string
+-
+sstream
+-
+
